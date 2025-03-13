@@ -1,13 +1,14 @@
 {
   "name": "hydrion-discord-tool",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "The best discord tool made by Hydroion-Tools",
-  "main": "dist/app.js",
+  "main": "build/app.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node build/app.js",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "dev": "npm run build && npm run format && npm start"
   },
   "keywords": [
     "discord",
@@ -24,5 +25,10 @@
     "eslint-plugin-prettier": "^5.2.3",
     "prettier": "^3.4.2",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "ansi-colors": "^4.1.3",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   }
 }
