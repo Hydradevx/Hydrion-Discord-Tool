@@ -37,7 +37,7 @@ X - Exit the Tool
 
 let currentpage: any = getPage(pageno);
 
-export function start() {
+export async function start() {
   console.clear();
   console.log(colors.cyan(banner));
   console.log(colors.cyanBright(currentpage));
@@ -56,8 +56,14 @@ export function start() {
     } else if (isNumber(command)) {
       const func = funcs[command];
       if (func) {
-        require(func.path);
+        return import(func.path).then((module) => {
+          if (module.default) {
+            return module.default();
+          }
+        });
       }
+    } else {
+      console.log(colors.red("❌ Invalid Command"));
     }
   });
 }
